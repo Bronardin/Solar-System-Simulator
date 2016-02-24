@@ -1,0 +1,27 @@
+% A point moving around a circle
+
+clc 
+clear all
+
+xCenter = 5;
+yCenter = 5;
+theta = 0:0.1:10*pi;   % can change speed with the step size
+                       % and number of rotations with end value
+radius = 8;
+x = radius * cos(theta) + xCenter;
+y = radius * sin(theta) + yCenter;
+
+figure
+plot(x,y);
+hold on; % hold on so that the figure is not cleared,...
+         % but apparently it doesn't make a difference
+hLine = line('XData',x(1), 'YData',y(1), 'Color','r', ...  
+    'Marker','o', 'MarkerSize',6, 'LineWidth',2);  
+
+
+for i=1:length(x)
+ set(hLine,'xdata',x(i),'ydata',y(i)); % move the point using set
+                                  % to change the cooridinates.
+ M(i)=getframe(gcf);
+ view(3)
+end
